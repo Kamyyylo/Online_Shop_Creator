@@ -1,15 +1,14 @@
 import React, { Component } from "react";
+import { getCategory, createCategory } from "../../actions/categoryActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createCategory } from "../../actions/categoryActions";
 import classnames from "classnames";
-import Dashboard from "../Dashboard";
 
-class AddCategory extends Component {
+class UpdateCategory extends Component {
   constructor() {
     super();
-    //state is immutable. to put value you need to make new state
     this.state = {
+      id: "",
       categoryName: "",
       categoryIdentifier: "",
       description: "",
@@ -18,37 +17,50 @@ class AddCategory extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
-  //life cycle hooks
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.getCategory(id, this.props.history);
   }
-
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   onSubmit(e) {
     e.preventDefault();
-    //put props from form to new state
-    const newCategory = {
+    const updateCategory = {
+      id: this.state.id,
       categoryName: this.state.categoryName,
       categoryIdentifier: this.state.categoryIdentifier,
       description: this.state.description
     };
-    //send new object to create uisng actions
-    this.props.createCategory(newCategory, this.props.history);
+    this.props.createCategory(updateCategory, this.props.history);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+    //he gets the values from props.category
+    const {
+      id,
+      categoryName,
+      categoryIdentifier,
+      description
+    } = nextProps.category;
+    //values taken from props are being set to update forms
+    this.setState({
+      id,
+      categoryName,
+      categoryIdentifier,
+      description
+    });
   }
   render() {
-    //errors will be assigned from current state to errors other way f.e : this.state.errors.categoryName
     const { errors } = this.state;
     return (
       <div className="register float-left col-md-9 d-inline-block">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center">Create new category</h5>
+              <h5 className="display-4 text-center">Edit category</h5>
               <hr />
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -71,19 +83,11 @@ class AddCategory extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.categoryIdentifier
-                    })}
+                    className="form-control form-control-lg"
                     placeholder="Unique Category ID"
-                    name="categoryIdentifier"
                     value={this.state.categoryIdentifier}
-                    onChange={this.onChange}
+                    disabled
                   />
-                  {errors.categoryIdentifier && (
-                    <div className="invalid-feedback text-right">
-                      {errors.categoryIdentifier}
-                    </div>
-                  )}
                 </div>
 
                 <div className="form-group">
@@ -102,6 +106,7 @@ class AddCategory extends Component {
                     </div>
                   )}
                 </div>
+
                 <input
                   type="submit"
                   className="btn btn-primary btn-block mt-4"
@@ -114,18 +119,17 @@ class AddCategory extends Component {
     );
   }
 }
-
-AddCategory.propTypes = {
+UpdateCategory.propTypes = {
+  getCategory: PropTypes.func.isRequired,
   createCategory: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
-
 const mapStateToProps = state => ({
-  //assign state to props on the site
+  category: state.category.category,
   errors: state.errors
 });
-
 export default connect(
   mapStateToProps,
-  { createCategory }
-)(AddCategory);
+  { getCategory, createCategory }
+)(UpdateCategory);

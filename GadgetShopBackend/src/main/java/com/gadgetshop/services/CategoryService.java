@@ -3,7 +3,6 @@ package com.gadgetshop.services;
 import com.gadgetshop.domain.Category;
 import com.gadgetshop.exceptions.CategoryIdException;
 import com.gadgetshop.repositories.CategoryRepository;
-import com.sun.org.apache.xml.internal.resolver.CatalogException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

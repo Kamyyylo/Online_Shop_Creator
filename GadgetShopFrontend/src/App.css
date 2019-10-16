@@ -20,3 +20,7 @@
 .App-link {
   color: #09d3ac;
 }
+.trash-icon:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}

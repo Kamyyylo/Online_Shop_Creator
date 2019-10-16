@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import CategoryItem from "./Category/CategoryItem";
 import CreateCategoryButton from "./Category/CreateCategoryButton";
+import { connect } from "react-redux";
+import { getCategories } from "../actions/categoryActions";
+import PropTypes from "prop-types";
 
 class Dashboard extends Component {
+  componentDidMount() {
+    //every time we load component it hasto load also the categories
+    this.props.getCategories();
+  }
+
   render() {
+    const { categories } = this.props.category;
     return (
-      <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+      <nav className="float-left col-md-2 d-inline-block  bg-light sidebar ">
         <div className="sidebar-sticky">
           <ul className="nav flex-column">
             <CreateCategoryButton />
@@ -15,10 +24,10 @@ class Dashboard extends Component {
               </h5>
             </li>
             <li>
-              <a className="nav-link active" href="#">
-                <span data-feather="home"></span>
-                <CategoryItem />
-              </a>
+              <span data-feather="home"></span>
+              {categories.map(category => (
+                <CategoryItem key={category.id} category={category} />
+              ))}
             </li>
           </ul>
         </div>
@@ -26,5 +35,16 @@ class Dashboard extends Component {
     );
   }
 }
-
-export default Dashboard;
+Dashboard.propTypes = {
+  category: PropTypes.object.isRequired,
+  getCategories: PropTypes.func.isRequired
+};
+//we taking from reducer the values
+const mapStateToProps = state => ({
+  category: state.category
+});
+//categories will be loaded everytime when we open the dashboard
+export default connect(
+  mapStateToProps,
+  { getCategories }
+)(Dashboard);
