@@ -1,10 +1,17 @@
 package com.gadgetshop.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+ * id - id of the productList
+ * PLSequence - unique sequence for products in product list
+ * category - category assigned to list *can be only one*
+ * products - list of products. Many to one relation. many products - one list
+ * */
 @Entity
 public class ProductList {
 
@@ -15,10 +22,32 @@ public class ProductList {
     private String categoryIdentifier;
 
     //OneToOne with category it means that every single category can only have only one product list
-
+    //here need to be json ignore to avoid infinite recursion
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    @JsonIgnore
+    private Category category;
     //OneToMany with the products. products list can have one or many products but product can only have one product list
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productList")
+    private List<Product> products = new ArrayList<>();
 
     public ProductList() {
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {

@@ -1,9 +1,21 @@
 package com.gadgetshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
+/*
+ * id - id of the product
+ * productName - name of product
+ * productPhoto - address to photo in the folder
+ * productPrice - price of the photo
+ * productDescription - description of the product
+ * created_at, updated_at - to keep changes clean and know the date of last change
+ * categoryIdentifier = identifier of category that product belongs
+ * productList - list of products
+ * */
 @Entity
 public class Product {
 
@@ -17,16 +29,28 @@ public class Product {
     @NotBlank(message = "Address to photo is required")
     private String productPhoto;
     @NotBlank(message = "Product price is required")
-    private String productPrice;
+    private Double productPrice;
     @NotBlank(message = "Product description is required")
     private String productDescription;
     private Date created_At;
     private Date updated_At;
     //Many to one with product list
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "productList_id", updatable = false, nullable = false)
+    @JsonIgnore
+    private ProductList productList;
     @Column(updatable = false)
     private String categoryIdentifier;
 
     public Product() {
+    }
+
+    public ProductList getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ProductList productList) {
+        this.productList = productList;
     }
 
     public Long getId() {
@@ -61,11 +85,11 @@ public class Product {
         this.productPhoto = productPhoto;
     }
 
-    public String getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 

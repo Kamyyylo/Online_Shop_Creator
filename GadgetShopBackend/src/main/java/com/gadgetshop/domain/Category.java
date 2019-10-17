@@ -6,18 +6,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
-
+/*
+ * id - unique id for one record
+ * categoryName - name of the category eg. Technic
+ * categoryIdentifier - unique idenfifier for category(abbreviation) eg. TECH
+ * description - description of the category f.e info about category on hover
+ * created_At, updated_At - dates to controll of the changes in fields
+ * one to one product list - product list for category
+ */
 @Entity
 public class Category {
-
-    /*
-     * id - unique id for one record
-     * categoryName - name of the category eg. Technic
-     * categoryIdentifier - unique idenfifier for category(abbreviation) eg. TECH
-     * description - description of the category f.e info about category on hover
-     * created_At, updated_At - dates to controll of the changes in fields
-     *
-     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +33,19 @@ public class Category {
     private Date created_At;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "category")
+    //TODO
+    private ProductList productList;
 
     public Category() {
+    }
+
+    public ProductList getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ProductList productList) {
+        this.productList = productList;
     }
 
     public Long getId() {
