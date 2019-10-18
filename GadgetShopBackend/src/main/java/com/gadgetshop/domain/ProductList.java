@@ -28,7 +28,9 @@ public class ProductList {
     @JsonIgnore
     private Category category;
     //OneToMany with the products. products list can have one or many products but product can only have one product list
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "productList")
+    //orphan removal is needed because when we delete category, product list should also be deleted and that causes delete the products.
+    //Cascade type refresh is needed when we delete product and want to refresh the list
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "productList", orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
     public ProductList() {

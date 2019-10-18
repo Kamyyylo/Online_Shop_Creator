@@ -1,11 +1,13 @@
 package com.gadgetshop.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+
 /*
  * id - unique id for one record
  * categoryName - name of the category eg. Technic
@@ -34,7 +36,8 @@ public class Category {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "category")
-    //TODO
+    @JsonIgnore
+    //why ? For performance. If we dont load product list we need to upload less objects. less objects == better performance
     private ProductList productList;
 
     public Category() {

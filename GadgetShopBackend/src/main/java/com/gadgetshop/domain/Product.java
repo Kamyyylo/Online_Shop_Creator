@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /*
@@ -22,20 +23,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(updatable = false)
-    private String productSequence;
+    @Column(updatable = false, unique = true)
+    private String categorySequence;
     @NotBlank(message = "Product name is required")
     private String productName;
     @NotBlank(message = "Address to photo is required")
     private String productPhoto;
-    @NotBlank(message = "Product price is required")
+    @NotNull(message = "Product price is required")
     private Double productPrice;
     @NotBlank(message = "Product description is required")
     private String productDescription;
     private Date created_At;
     private Date updated_At;
     //Many to one with product list
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productList_id", updatable = false, nullable = false)
     @JsonIgnore
     private ProductList productList;
@@ -61,12 +62,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductSequence() {
-        return productSequence;
+    public String getCategorySequence() {
+        return categorySequence;
     }
 
-    public void setProductSequence(String productSequence) {
-        this.productSequence = productSequence;
+    public void setCategorySequence(String categorySequence) {
+        this.categorySequence = categorySequence;
     }
 
     public String getProductName() {
@@ -139,7 +140,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", productSequence='" + productSequence + '\'' +
+                ", productSequence='" + categorySequence + '\'' +
                 ", productName='" + productName + '\'' +
                 ", productPhoto='" + productPhoto + '\'' +
                 ", productPrice='" + productPrice + '\'' +
