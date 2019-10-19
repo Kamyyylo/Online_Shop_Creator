@@ -9,7 +9,7 @@ import {
 //history pushes as to dashboard if we add category
 export const createCategory = (category, history) => async dispatch => {
   try {
-    const res = await axios.post("/category", category);
+    await axios.post("/category", category);
     history.push("/dashboard");
     dispatch({
       type: GET_ERRORS,

@@ -17,6 +17,12 @@
       "css": "wrench",
       "code": 59393,
       "src": "elusive"
+    },
+    {
+      "uid": "59ba4f90d2ca2a843f4f930b03270362",
+      "css": "plus-circle",
+      "code": 59394,
+      "src": "iconic"
     }
   ]
 }

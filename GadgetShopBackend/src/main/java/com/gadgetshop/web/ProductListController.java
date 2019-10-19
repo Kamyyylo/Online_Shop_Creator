@@ -63,6 +63,6 @@ public class ProductListController {
     @DeleteMapping("/{productList_id}/{pl_id}")
     public ResponseEntity<?> deleteProduct(@PathVariable String productList_id, @PathVariable String pl_id) {
         productService.deleteProductByCategorySequence(productList_id, pl_id);
-        return new ResponseEntity<String>("Product with id '" + productList_id + "' was deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("Product with id '" + pl_id + "' was deleted successfully", HttpStatus.OK);
     }
 }

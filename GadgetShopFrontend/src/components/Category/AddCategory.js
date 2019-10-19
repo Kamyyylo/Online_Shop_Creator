@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createCategory } from "../../actions/categoryActions";
 import classnames from "classnames";
-import Dashboard from "../Dashboard";
 
 class AddCategory extends Component {
   constructor() {

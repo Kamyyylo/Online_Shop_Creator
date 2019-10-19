@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /*
@@ -26,13 +27,18 @@ public class Product {
     @Column(updatable = false, unique = true)
     private String categorySequence;
     @NotBlank(message = "Product name is required")
+    @Size(max = 21, message = "Put max 21 characters")
     private String productName;
     @NotBlank(message = "Address to photo is required")
     private String productPhoto;
     @NotNull(message = "Product price is required")
     private Double productPrice;
     @NotBlank(message = "Product description is required")
+    @Column(length=1500)
     private String productDescription;
+    @Column(length=1000)
+    @NotBlank(message = "Short description is required")
+    private String productShortDescription;
     private Date created_At;
     private Date updated_At;
     //Many to one with product list
@@ -48,6 +54,14 @@ public class Product {
 
     public ProductList getProductList() {
         return productList;
+    }
+
+    public String getProductShortDescription() {
+        return productShortDescription;
+    }
+
+    public void setProductShortDescription(String productShortDescription) {
+        this.productShortDescription = productShortDescription;
     }
 
     public void setProductList(ProductList productList) {

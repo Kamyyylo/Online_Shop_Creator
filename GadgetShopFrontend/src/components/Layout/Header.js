@@ -8,16 +8,16 @@ class Header extends Component {
           <Link to="/dashboard">Gadget Shop</Link>
         </h4>
         <nav className="my-2 my-md-0 mr-md-3">
-          <a className="p-2 text-dark" href="">
+          <Link className="p-2 text-dark" to="">
             Cart
-          </a>
-          <a className="p-2 text-dark" href="">
+          </Link>
+          <Link className="p-2 text-dark" to="">
             Name
-          </a>
+          </Link>
         </nav>
-        <a className="btn btn-outline-primary" href="">
+        <Link className="btn btn-outline-primary" to="">
           Sign up
-        </a>
+        </Link>
       </div>
     );
   }
