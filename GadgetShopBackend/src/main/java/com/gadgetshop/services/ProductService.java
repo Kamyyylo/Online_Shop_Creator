@@ -9,9 +9,7 @@ import com.gadgetshop.repositories.ProductListRepository;
 import com.gadgetshop.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
-import java.util.List;
 
 /*
  * ProductListRepository - crud operations on product list

@@ -24,8 +24,10 @@ export default function(state = initialState, action) {
       };
     case DELETE_PRODUCT:
       return {
-        ...state
-        //todo
+        ...state,
+        products: state.products.filter(
+          product => product.categorySequence !== action.payload
+        )
       };
     default:
       return state;

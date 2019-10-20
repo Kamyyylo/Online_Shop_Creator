@@ -31,7 +31,7 @@ class AddProduct extends Component {
       productName: this.state.productName,
       productPhoto: this.state.productPhoto,
       productPrice: this.state.productPrice,
-      productShortDescription: this.state.productDescription,
+      productShortDescription: this.state.productShortDescription,
       productDescription: this.state.productDescription
     };
     this.props.addProduct(

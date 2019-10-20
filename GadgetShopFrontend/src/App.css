@@ -20,7 +20,7 @@
 .App-link {
   color: #09d3ac;
 }
-.diplay-block-class {
+.display-block-class {
   display: block;
 }
 .display-inline-class {
@@ -99,4 +99,32 @@
 }
 .product-description {
   text-align: left;
+}
+.more-info-product-name {
+  font-size: 30px;
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.more-info-product-price {
+  font-size: 30px;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.more-info-product-description {
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: justify;
+  font-weight: 500;
+}
+
+.more-info-back-to-products-btn {
+  margin-top: 155px;
+}
+.more-info-image {
+  margin: 20px;
+  width: 35%;
+  height: 35%;
 }

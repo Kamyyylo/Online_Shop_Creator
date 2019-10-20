@@ -27,17 +27,17 @@ public class Product {
     @Column(updatable = false, unique = true)
     private String categorySequence;
     @NotBlank(message = "Product name is required")
-    @Size(max = 21, message = "Put max 21 characters")
+    @Size(max = 35, message = "Put max 35 characters")
     private String productName;
     @NotBlank(message = "Address to photo is required")
     private String productPhoto;
     @NotNull(message = "Product price is required")
     private Double productPrice;
     @NotBlank(message = "Product description is required")
-    @Column(length=1500)
+    @Column(length = 3000)
     private String productDescription;
-    @Column(length=1000)
     @NotBlank(message = "Short description is required")
+    @Size(max = 190, message = "Put max 190 characters")
     private String productShortDescription;
     private Date created_At;
     private Date updated_At;

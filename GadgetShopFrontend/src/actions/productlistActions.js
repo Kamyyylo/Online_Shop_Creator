@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_ERRORS, GET_PRODUCTLIST, GET_PRODUCT } from "../actions/types";
+import {
+  GET_ERRORS,
+  GET_PRODUCTLIST,
+  GET_PRODUCT,
+  DELETE_PRODUCT
+} from "../actions/types";
 
 export const addProduct = (
   productlist_id,
@@ -77,4 +82,18 @@ export const updateProduct = (
       payload: err.response.data
     });
   }
+};
+
+export const deleteProduct = (productlist_id, pl_id) => async dispatch => {
+  if (
+    window.confirm(
+      `Are you sure you want to delete this product? This action cannot be undone`
+    )
+  )
+    await axios.delete(`/productlist/${productlist_id}/${pl_id}`);
+  dispatch({
+    type: DELETE_PRODUCT,
+    //im going to use this id in the future
+    payload: pl_id
+  });
 };
