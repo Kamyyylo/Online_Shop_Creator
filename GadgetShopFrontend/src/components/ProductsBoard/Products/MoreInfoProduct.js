@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getProduct } from "../../../actions/productlistActions";
+import { addToShoppingCart } from "../../../actions/shoppingCartActions";
 import { Link } from "react-router-dom";
+import { Popup } from "semantic-ui-react";
 
 class MoreInfoProduct extends Component {
   constructor(props) {
@@ -18,6 +20,9 @@ class MoreInfoProduct extends Component {
       categoryIdentifier: "",
       errors: {}
     };
+  }
+  onAddToCartClick(id) {
+    this.props.addToShoppingCart(id);
   }
   componentDidMount() {
     const { productlist_id, pl_id } = this.props.match.params;
@@ -52,7 +57,7 @@ class MoreInfoProduct extends Component {
       <div className="register float-left col-md-9 d-inline-block add-box-shadow ">
         <img
           className="d-block float-left more-info-image"
-          src={`/images/${product.productPhoto}`}
+          src={`/images/${this.state.productPhoto}`}
           alt=""
         ></img>
         <div className="float-left d-block ">
@@ -61,11 +66,24 @@ class MoreInfoProduct extends Component {
           <p className="more-info-product-price ">
             {this.state.productPrice} Euro
           </p>
-          <p className="text-left ">
-            <Link className=" btn btn-danger" to="#">
-              add to cart
-            </Link>
-          </p>
+          <div className="text-left ">
+            <Popup
+              content="Add product to your cart and continue shopping!"
+              className="cart-popup"
+              position="right center"
+              trigger={
+                <p
+                  className=" btn btn-danger "
+                  onClick={this.onAddToCartClick.bind(
+                    this,
+                    product.categorySequence
+                  )}
+                >
+                  add to cart
+                </p>
+              }
+            />
+          </div>
           <p className="text-left float-left more-info-back-to-products-btn ">
             <Link
               className=" btn btn-primary  "
@@ -87,7 +105,8 @@ class MoreInfoProduct extends Component {
 
 MoreInfoProduct.propTypes = {
   getProduct: PropTypes.func.isRequired,
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  addToShoppingCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -96,5 +115,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProduct }
+  { getProduct, addToShoppingCart }
 )(MoreInfoProduct);

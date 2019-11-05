@@ -13,6 +13,10 @@ import ProductsBoard from "./components/ProductsBoard/ProductsBoard";
 import AddProduct from "./components/ProductsBoard/Products/AddProduct";
 import UpdateProduct from "./components/ProductsBoard/Products/UpdateProduct";
 import MoreInfoProduct from "./components/ProductsBoard/Products/MoreInfoProduct";
+import CartProductList from "./components/ShoppingCart/CartProductList";
+import InfoImage from "./components/InfoImage";
+import Footer from "./components/Layout/Footer";
+import ChangeMainData from "./components/ChangeMainData/ChangeMainData";
 
 //url with parameters needs to be separated routed if we want many url to one component
 function App() {
@@ -36,10 +40,13 @@ function App() {
           />
           <Route exact path="/addCategory" component={Dashboard} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard" component={InfoImage} />
           <Route exact path="/addCategory" component={AddCategory} />
+          <Route exact path="/shoppingCart" component={CartProductList} />
           <Route exact path="/updateCategory/:id" component={UpdateCategory} />
           <Route exact path="/productsBoard/:id" component={ProductsBoard} />
           <Route exact path="/addProduct/:id" component={AddProduct} />
+          <Route exact path="/changeMainData" component={ChangeMainData} />
           <Route
             exact
             path="/moreInfo/:productlist_id/:pl_id"
@@ -50,6 +57,7 @@ function App() {
             path="/updateProduct/:productlist_id/:pl_id"
             component={UpdateProduct}
           />
+          <Footer />
         </div>
       </Router>
     </Provider>

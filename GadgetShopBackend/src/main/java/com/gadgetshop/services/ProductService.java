@@ -3,12 +3,17 @@ package com.gadgetshop.services;
 import com.gadgetshop.domain.Category;
 import com.gadgetshop.domain.Product;
 import com.gadgetshop.domain.ProductList;
+import com.gadgetshop.domain.ShoppingCart;
 import com.gadgetshop.exceptions.CategoryNotFoundException;
 import com.gadgetshop.repositories.CategoryRepository;
 import com.gadgetshop.repositories.ProductListRepository;
 import com.gadgetshop.repositories.ProductRepository;
+import com.gadgetshop.repositories.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /*
@@ -27,6 +32,9 @@ public class ProductService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
     public Product addProduct(String categoryIdentifier, Product product) {
         //Exception category not found
@@ -90,4 +98,8 @@ public class ProductService {
         productRepository.delete(product);
     }
 
+    public Iterable<ShoppingCart> findProductsInShoppingCart() {
+        Iterable<ShoppingCart> shoppingCartList = shoppingCartRepository.findAll();
+      return shoppingCartList;
+    }
 }

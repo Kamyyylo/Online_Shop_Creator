@@ -1,10 +1,8 @@
 package com.gadgetshop.web;
 
 import com.gadgetshop.domain.Product;
-import com.gadgetshop.domain.ProductList;
 import com.gadgetshop.services.MapValidationErrorService;
 import com.gadgetshop.services.ProductService;
-import com.sun.scenario.effect.impl.prism.PrDrawable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/productlist")
@@ -24,6 +21,7 @@ public class ProductListController {
 
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
+
 
     @PostMapping("/{productList_id}")
     public ResponseEntity<?> addProductToProductList(@Valid @RequestBody Product product, BindingResult result, @PathVariable String productList_id) {
@@ -65,4 +63,6 @@ public class ProductListController {
         productService.deleteProductByCategorySequence(productList_id, pl_id);
         return new ResponseEntity<String>("Product with id '" + pl_id + "' was deleted successfully", HttpStatus.OK);
     }
+
+
 }

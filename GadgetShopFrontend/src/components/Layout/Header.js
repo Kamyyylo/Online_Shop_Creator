@@ -10,10 +10,15 @@ class Header extends Component {
         <h4 className="my-0 mr-md-auto font-weight-normal">
           <Link to="/dashboard">Gadget Shop</Link>
         </h4>
+        <Link className="btn btn-success" to="/changeMainData">
+          Change main data
+        </Link>
         <nav className="my-2 my-md-0 mr-md-3">
-          <Link className="p-2 text-dark" to="">
-            Cart
-          </Link>
+          <Link
+            to="/shoppingCart"
+            className="icon-basket p-2  icon-basket-attributes"
+          />
+
           <Link className="p-2 text-dark" to="">
             Name
           </Link>
