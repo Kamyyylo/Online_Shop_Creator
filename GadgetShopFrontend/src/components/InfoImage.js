@@ -1,12 +1,21 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class InfoImage extends Component {
   render() {
+    const { shopMainData } = this.props.shopMainData;
     return (
       <div>
-        <img src={`/images/info.jpg`} alt="" />
+        <img src={`/images/${shopMainData.pictureOnTheDashboard}`} alt="" />
       </div>
     );
   }
 }
-export default InfoImage;
+const mapStateToProps = state => ({
+  shopMainData: state.shopMainData
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(InfoImage);

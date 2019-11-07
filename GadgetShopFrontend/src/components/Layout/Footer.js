@@ -1,17 +1,27 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Footer extends Component {
   render() {
+    const { shopMainData } = this.props.shopMainData;
     return (
-      <footer class="page-footer font-small  fixed-bottom footer">
-        <div class=" copyright footer-copyright py-3 float-left  ">
+      <footer className="page-footer font-small footer">
+        <div className=" copyright footer-copyright py-3 float-left  ">
           © 2019 Copyright: Kamil Kamyszek
         </div>
-        <div class="contact py-3 text-right  ">
-          Contact: tempemail@gmail.com
+        <div className="contact py-3 text-right  ">
+          Contact: {shopMainData.contactEmail}
         </div>
       </footer>
     );
   }
 }
-export default Footer;
+
+const mapStateToProps = state => ({
+  shopMainData: state.shopMainData
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Footer);

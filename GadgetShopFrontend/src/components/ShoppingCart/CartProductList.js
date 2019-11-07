@@ -41,7 +41,7 @@ class CartProductList extends Component {
         return (
           <div>
             {shoppingCartItem}
-            <div className="cart-right-container ">
+            <div className="cart-right-container">
               <div className=" add-box-shadow cart-price-checkout-container">
                 <div className="">
                   <label className="cart-label-price">Cost:</label>
@@ -132,7 +132,7 @@ class CartProductList extends Component {
       }
     };
     let CartItems = renderProducts();
-    return <div>{CartItems}</div>;
+    return <div className="d-inline-block margin-bottom">{CartItems}</div>;
   }
 }
 

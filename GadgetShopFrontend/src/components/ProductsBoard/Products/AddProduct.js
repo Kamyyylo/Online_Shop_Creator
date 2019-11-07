@@ -80,7 +80,7 @@ class AddProduct extends Component {
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.productPhoto
                     })}
-                    placeholder="Put here name of the image with proper extension f.e jpg, png"
+                    placeholder="Name of the image with its extension f.e jpg, png. Size 200x200px"
                     name="productPhoto"
                     value={this.state.productPhoto}
                     onChange={this.onChange}

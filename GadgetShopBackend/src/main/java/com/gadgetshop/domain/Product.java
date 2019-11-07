@@ -29,7 +29,7 @@ public class Product {
     @NotBlank(message = "Product name is required")
     @Size(max = 35, message = "Put max 35 characters")
     private String productName;
-    @NotBlank(message = "Address to photo is required")
+    @NotBlank(message = "Address to photo is required. Size 200x200px ")
     private String productPhoto;
     @NotNull(message = "Product price is required")
     private Double productPrice;

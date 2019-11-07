@@ -12,11 +12,11 @@ public class ShopMainData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Shop name is required")
     private String shopName;
-    @NotBlank
+    @NotBlank(message = "Picture is required. Put image name with its ending f.e .jpg .png and up to 1200x550px")
     private String pictureOnTheDashboard;
-    @NotBlank
+    @NotBlank(message = "Contact email is required")
     private String contactEmail;
 
     public ShopMainData() {

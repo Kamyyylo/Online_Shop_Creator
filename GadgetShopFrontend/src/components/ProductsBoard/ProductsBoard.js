@@ -54,7 +54,7 @@ class ProductsBoard extends Component {
     };
     BoardContent = boardAlgorithm(errors, productItem);
     return (
-      <div className="col-md-9 register float-left d-inline-block">
+      <div className="col-md-9 register float-left d-inline-block margin-bottom">
         <div>{BoardContent}</div>
       </div>
     );
