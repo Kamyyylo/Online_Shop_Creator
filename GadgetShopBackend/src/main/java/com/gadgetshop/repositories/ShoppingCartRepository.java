@@ -11,5 +11,8 @@ public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Lon
     @Override
     Iterable<ShoppingCart> findAll();
 
+    Iterable<ShoppingCart> findAllByCartItemOwner(String username);
+
+
     ShoppingCart findById(long id);
 }

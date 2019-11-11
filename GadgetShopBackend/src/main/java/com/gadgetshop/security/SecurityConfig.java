@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static com.gadgetshop.services.SecurityConstants.SIGN_UP_URLS;
+import static com.gadgetshop.services.SecurityConstants.SHOP_MAIN_DATA_URLS;
 
 @Configuration
 @EnableWebSecurity
@@ -69,11 +70,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                .antMatchers(SIGN_UP_URLS
+                .antMatchers(SIGN_UP_URLS,SHOP_MAIN_DATA_URLS
                 ).permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
 
 }

@@ -132,7 +132,7 @@ class CartProductList extends Component {
       }
     };
     let CartItems = renderProducts();
-    return <div className="d-inline-block margin-bottom">{CartItems}</div>;
+    return <div className="margin-bottom">{CartItems}</div>;
   }
 }
 

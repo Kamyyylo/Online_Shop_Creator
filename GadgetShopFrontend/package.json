@@ -8,6 +8,7 @@
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jwt-decode": "^2.2.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-notifications": "^1.4.3",

@@ -4,7 +4,7 @@ import CreateCategoryButton from "./Category/CreateCategoryButton";
 import { connect } from "react-redux";
 import { getCategories } from "../actions/categoryActions";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 class Dashboard extends Component {
   componentDidMount() {
     //every time we load component it hasto load also the categories
@@ -17,7 +17,9 @@ class Dashboard extends Component {
       <nav className="float-left col-md-2 d-inline-block  bg-light sidebar ">
         <div className="sidebar-sticky">
           <ul className="nav flex-column">
-            <CreateCategoryButton />
+            <Link to="/addCategory" className="btn  btn-primary">
+              Create new category
+            </Link>
             <li className="nav-item">
               <h5 className="sidebar-heading  text-center align-items-center px-3 mt-4 mb-1 text-muted">
                 <span>Categories</span>

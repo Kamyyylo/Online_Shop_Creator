@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
-import java.util.List;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/shoppingCart")
@@ -25,21 +25,21 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     @PostMapping("/{categorySequence}")
-    public ResponseEntity<?> addProductToShoppingCart(@Valid @RequestBody ShoppingCart shoppingCart, @PathVariable String categorySequence) {
-        ShoppingCart shoppingCart1 = shoppingCartService.saveShoppingCartProduct(shoppingCart, categorySequence);
+    public ResponseEntity<?> addProductToShoppingCart(@Valid @RequestBody ShoppingCart shoppingCart, @PathVariable String categorySequence, Principal principal) {
+        ShoppingCart shoppingCart1 = shoppingCartService.saveShoppingCartProduct(shoppingCart, categorySequence, principal.getName());
         return new ResponseEntity<>(shoppingCart1, HttpStatus.OK);
     }
 
     @GetMapping("")
-    public Iterable<ShoppingCart> getProductsInCart() {
-        return productService.findProductsInShoppingCart();
+    public Iterable<ShoppingCart> getProductsInCart(Principal principal) {
+        return productService.findProductsInShoppingCart(principal.getName());
     }
 
-    @DeleteMapping("/{productList_id}/{pl_id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable String productList_id, @PathVariable String pl_id) {
-        productService.deleteProductByCategorySequence(productList_id, pl_id);
-        return new ResponseEntity<String>("Product with id '" + pl_id + "' was deleted successfully", HttpStatus.OK);
-    }
+//    @DeleteMapping("/{productList_id}/{pl_id}")
+//    public ResponseEntity<?> deleteProduct(@PathVariable String productList_id, @PathVariable String pl_id) {
+//        productService.deleteProductByCategorySequence(productList_id, pl_id);
+//        return new ResponseEntity<String>("Product with id '" + pl_id + "' was deleted successfully", HttpStatus.OK);
+//    }
 
     @DeleteMapping("/{shoppingCartId}")
     public ResponseEntity<?> deleteProductInCart(@PathVariable String shoppingCartId) {

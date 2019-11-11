@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/category")
@@ -48,6 +49,6 @@ public class CategoryController {
     @DeleteMapping("/{categoryIdentifier}")
     public ResponseEntity<?> deleteCategory(@PathVariable String categoryIdentifier) {
         categoryService.deleteCategoryByIdentifier(categoryIdentifier.toUpperCase());
-        return new ResponseEntity<String>("Category with id '" + categoryIdentifier + "' succesfully deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Category with id '" + categoryIdentifier + "' successfully deleted", HttpStatus.OK);
     }
 }

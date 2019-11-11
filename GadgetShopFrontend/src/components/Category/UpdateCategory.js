@@ -18,6 +18,9 @@ class UpdateCategory extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
+    if (!this.props.security.user.admin) {
+      this.props.history.push("/dashboard");
+    }
     const { id } = this.props.match.params;
     this.props.getCategory(id, this.props.history);
   }
@@ -123,9 +126,11 @@ UpdateCategory.propTypes = {
   getCategory: PropTypes.func.isRequired,
   createCategory: PropTypes.func.isRequired,
   category: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
+  security: state.security,
   category: state.category.category,
   errors: state.errors
 });

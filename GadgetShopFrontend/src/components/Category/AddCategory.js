@@ -119,12 +119,7 @@ AddCategory.propTypes = {
   errors: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  //assign state to props on the site
-  errors: state.errors
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { createCategory }
 )(AddCategory);

@@ -15,3 +15,5 @@ export const GET_SHIPPING_OPTIONS = "GET_SHIPPING_OPTIONS";
 export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 //Shop Main Data types
 export const GET_SHOP_MAIN_DATA = "GET_SHOP_MAIN_DATA";
+//User types
+export const SET_CURRENT_USER = "SET_CURRENT_USER";

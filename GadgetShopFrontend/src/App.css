@@ -228,3 +228,42 @@
 .margin-bottom {
   margin-bottom: 55px;
 }
+.enter-page-header-text {
+  font-size: 80px;
+  font-weight: 700;
+  padding-top: 70px;
+}
+.enter-page-login-register-message {
+  font-size: 30px;
+  font-weight: 500;
+  padding-bottom: 30px;
+}
+.enter-page-buttons {
+  margin: 40px;
+  transform: scale(2, 2);
+}
+.enter-page-buttons:hover {
+  transform: scale(2.1, 2.1);
+}
+.login-register-header {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 50px;
+  font-weight: 700;
+}
+.login-register-labels {
+  font-weight: 500;
+  font-size: 20px;
+  float: left;
+  margin-left: 13px;
+}
+.button-width {
+  width: 100%;
+}
+
+.button-go-register:hover {
+  transform: scale(1.1, 1.1);
+}
+.scale-button:hover {
+  transform: scale(1.1, 1.1);
+}

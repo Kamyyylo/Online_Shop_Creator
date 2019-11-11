@@ -98,8 +98,8 @@ public class ProductService {
         productRepository.delete(product);
     }
 
-    public Iterable<ShoppingCart> findProductsInShoppingCart() {
-        Iterable<ShoppingCart> shoppingCartList = shoppingCartRepository.findAll();
+    public Iterable<ShoppingCart> findProductsInShoppingCart(String username) {
+        Iterable<ShoppingCart> shoppingCartList = shoppingCartRepository.findAllByCartItemOwner(username);
       return shoppingCartList;
     }
 }

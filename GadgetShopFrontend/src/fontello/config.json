@@ -35,6 +35,12 @@
       "css": "basket",
       "code": 59395,
       "src": "fontawesome"
+    },
+    {
+      "uid": "8ed4884bf9b840729eef8f0bbd2b1dbb",
+      "css": "user-outline",
+      "code": 59396,
+      "src": "typicons"
     }
   ]
 }
