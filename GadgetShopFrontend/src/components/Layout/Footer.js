@@ -6,10 +6,10 @@ class Footer extends Component {
     const { shopMainData } = this.props.shopMainData;
     return (
       <footer className="page-footer font-small footer">
-        <div className=" copyright footer-copyright py-3 float-left  ">
+        <div className=" copyright footer-copyright py-2 float-left  ">
           © 2019 Copyright: Kamil Kamyszek
         </div>
-        <div className="contact py-3 text-right  ">
+        <div className="contact py-2 text-right  ">
           Contact: {shopMainData.contactEmail}
         </div>
       </footer>
@@ -21,7 +21,4 @@ const mapStateToProps = state => ({
   shopMainData: state.shopMainData
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Footer);
+export default connect(mapStateToProps, null)(Footer);

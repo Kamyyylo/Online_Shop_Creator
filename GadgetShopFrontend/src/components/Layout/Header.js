@@ -22,8 +22,11 @@ class Header extends Component {
     const { validToken, user } = this.props.security;
     const userIsAdmin = (
       <React.Fragment>
-        <Link className="btn btn-success" to="/changeMainData">
-          Change main data
+        <Link
+          className="btn btn-success margin-left-button scale-button"
+          to="/changeMainData"
+        >
+          Edit page<i className="fa fa-edit header-buttons"></i>
         </Link>
       </React.Fragment>
     );
@@ -33,18 +36,22 @@ class Header extends Component {
     }
     const userIsLogged = (
       <React.Fragment>
-        <Link
-          to="/shoppingCart"
-          className="icon-basket p-2  icon-basket-attributes"
-        />
-        {adminButton}
-        <p className="p-2 text-dark" to="">
+        <p className="user-name-header" to="">
           {user.username}
         </p>
-        <p className="icon-user-outline"></p>
-        <p className="btn btn-primary" onClick={this.logout.bind(this)}>
-          Log out
-        </p>
+        <Link to="/shoppingCart" className=" ">
+          <button className="btn btn-danger btn-warning margin-left-button scale-button">
+            Cart
+            <i className="fa fa-shopping-cart header-buttons"></i>
+          </button>
+        </Link>
+        {adminButton}
+        <button
+          className="btn btn-info margin-left-button scale-button"
+          onClick={this.logout.bind(this)}
+        >
+          Log out <i className="fa fa-sign-out header-buttons "></i>
+        </button>
       </React.Fragment>
     );
 
@@ -63,9 +70,11 @@ class Header extends Component {
       headerLoggedData = userIsLogged;
     }
     return (
-      <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h4 className="my-0 mr-md-auto font-weight-normal">
-          <Link to={`${address}`}>{shopMainData.shopName}</Link>
+      <div className="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 header-background border-bottom shadow-sm">
+        <h4 className="my-0 mr-md-auto header-shop-name scale-thing">
+          <Link className="header-link-deco" to={`${address}`}>
+            {shopMainData.shopName}
+          </Link>
         </h4>
         {headerLoggedData}
       </div>
@@ -85,7 +94,4 @@ const mapStateToProps = state => ({
   security: state.security
 });
 
-export default connect(
-  mapStateToProps,
-  { getShopMainData, logout }
-)(Header);
+export default connect(mapStateToProps, { getShopMainData, logout })(Header);

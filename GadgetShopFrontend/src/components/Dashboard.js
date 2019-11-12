@@ -14,15 +14,18 @@ class Dashboard extends Component {
   render() {
     const { categories } = this.props.category;
     return (
-      <nav className="float-left col-md-2 d-inline-block  bg-light sidebar ">
+      <nav className="float-left col-md-2 d-inline-block   sidebar header-background categories-div-style">
         <div className="sidebar-sticky">
           <ul className="nav flex-column">
-            <Link to="/addCategory" className="btn  btn-primary">
-              Create new category
+            <Link
+              to="/addCategory"
+              className="btn  btn-success scale-button add-category-text-margin"
+            >
+              Add category
             </Link>
-            <li className="nav-item">
-              <h5 className="sidebar-heading  text-center align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Categories</span>
+            <li className="nav-item ">
+              <h5 className=" text-center align-items-center px-3 mt-4 mb-3 ">
+                <span className="categories-header-text">Categories</span>
               </h5>
             </li>
             <li>
@@ -46,7 +49,4 @@ const mapStateToProps = state => ({
   category: state.category
 });
 //categories will be loaded everytime when we open the dashboard
-export default connect(
-  mapStateToProps,
-  { getCategories }
-)(Dashboard);
+export default connect(mapStateToProps, { getCategories })(Dashboard);

@@ -45,7 +45,7 @@ class Register extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container">
+      <div className="container register-page-background-color scale-thing">
         <form onSubmit={this.onSubmit}>
           <p className="login-register-header">Set up new account</p>
           <hr></hr>
@@ -120,14 +120,14 @@ class Register extends Component {
           <br></br>
           <button
             type="submit"
-            className="btn btn-primary button-width scale-button"
+            className="btn btn-dark button-width scale-button"
           >
             Sign up
           </button>
         </form>
         <hr></hr>
         <Link to="/login">
-          <button className=" btn btn-primary button-width   scale-button">
+          <button className=" btn btn-dark button-width   scale-button ">
             Already have an account? Log in!
           </button>
         </Link>
@@ -147,7 +147,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { createNewUser }
-)(Register);
+export default connect(mapStateToProps, { createNewUser })(Register);

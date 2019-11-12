@@ -41,8 +41,8 @@ class CartProductList extends Component {
         return (
           <div>
             {shoppingCartItem}
-            <div className="cart-right-container">
-              <div className=" add-box-shadow cart-price-checkout-container">
+            <div className="cart-right-container ">
+              <div className=" add-box-shadow cart-price-checkout-container scale-divs-in-cart">
                 <div className="">
                   <label className="cart-label-price">Cost:</label>
                   <div className="in-one-line-on-endings"></div>
@@ -68,6 +68,7 @@ class CartProductList extends Component {
                 <hr></hr>
 
                 <StripeCheckout
+                  className="scale-button"
                   currency="EUR"
                   stripeKey="pk_test_L62B8bk6mZ53yvnBXxzvCZ6i00rZlLuij6"
                   token={handleToken}
@@ -77,7 +78,7 @@ class CartProductList extends Component {
                 />
               </div>
 
-              <div className="btn-group-vertical btn-group-toggle cart-shipping-options">
+              <div className="btn-group-vertical btn-group-toggle cart-shipping-options scale-divs-in-cart">
                 <label className="btn btn-secondary active text-left">
                   Choose shipping option
                 </label>
@@ -144,7 +145,4 @@ const mapStateToProps = state => ({
   shoppingCart: state.shoppingCart
 });
 
-export default connect(
-  mapStateToProps,
-  { getShoppingCart }
-)(CartProductList);
+export default connect(mapStateToProps, { getShoppingCart })(CartProductList);

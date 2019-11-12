@@ -22,11 +22,12 @@ class CategoryItem extends Component {
     const { user } = this.props.security;
     const userIsAdmin = (
       <React.Fragment>
-        <p
-          className="icon-trash float-right trash-icon"
-          onClick={this.onDeleteClick.bind(this, category.categoryIdentifier)} //we take it from the props above
-        />
-
+        <button
+          className="btn btn-danger float-right float-right button-category"
+          onClick={this.onDeleteClick.bind(this, category.categoryIdentifier)}
+        >
+          <i className="fa fa-trash"></i>
+        </button>
         <Link
           onClick={this.onUpdateClick.bind(
             this,
@@ -34,8 +35,11 @@ class CategoryItem extends Component {
             this.props.history
           )}
           to={`/updateCategory/${category.categoryIdentifier}`}
-          className="update-icon icon-wrench float-right"
-        />
+        >
+          <button className="btn btn-warning float-right">
+            <i className="fa fa-wrench"></i>
+          </button>
+        </Link>
       </React.Fragment>
     );
     let adminButtons;
@@ -43,15 +47,16 @@ class CategoryItem extends Component {
       adminButtons = userIsAdmin;
     }
     return (
-      <div className="clearfix">
+      <div className="clearfix scale-button margin-bottom-category">
         <Link
           onClick={this.onCategoryNameClick.bind(
             this,
             category.categoryIdentifier
           )}
           to={`/productsBoard/${category.categoryIdentifier}`}
-          className="nav-link active float-left"
+          className="nav-link active float-left category-link-deco category-text"
         >
+          <i className="button-left-product fa fa-toggle-right"></i>
           {category.categoryName}
         </Link>
         {adminButtons}
@@ -67,7 +72,8 @@ CategoryItem.propTypes = {
 const mapStateToProps = state => ({
   security: state.security
 });
-export default connect(
-  mapStateToProps,
-  { deleteCategory, getCategory, getProductList }
-)(CategoryItem);
+export default connect(mapStateToProps, {
+  deleteCategory,
+  getCategory,
+  getProductList
+})(CategoryItem);

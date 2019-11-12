@@ -51,7 +51,7 @@ class AddProduct extends Component {
     const { errors } = this.state;
     return (
       <div className="add-PBI">
-        <div className="container">
+        <div className="container login-page-background-color scale-thing">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h4 className="display-4 text-center">Add New Product</h4>
@@ -140,14 +140,11 @@ class AddProduct extends Component {
                     </div>
                   )}
                 </div>
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
-                />
+                <input type="submit" className="btn btn-dark btn-block mt-4" />
                 <br></br>
                 <Link
                   to={`/productsBoard/${id}`}
-                  className="btn btn-primary float-left"
+                  className="btn btn-dark float-left"
                 >
                   Return to the list of products
                 </Link>
@@ -170,7 +167,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { addProduct }
-)(AddProduct);
+export default connect(mapStateToProps, { addProduct })(AddProduct);

@@ -54,7 +54,7 @@ class MoreInfoProduct extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div className="register float-left col-md-9 d-inline-block add-box-shadow ">
+      <div className="col-md-8 d-inline-block add-box-shadow more-info-margin">
         <img
           className="d-block float-left more-info-image"
           src={`/images/${this.state.productPhoto}`}
@@ -73,7 +73,7 @@ class MoreInfoProduct extends Component {
               position="right center"
               trigger={
                 <p
-                  className=" btn btn-danger "
+                  className=" btn btn-danger scale-button"
                   onClick={this.onAddToCartClick.bind(
                     this,
                     product.categorySequence
@@ -86,7 +86,7 @@ class MoreInfoProduct extends Component {
           </div>
           <p className="text-left float-left more-info-back-to-products-btn ">
             <Link
-              className=" btn btn-primary  "
+              className=" btn btn-info scale-button "
               to={`/productsBoard/${product.categoryIdentifier}`}
             >
               back to products
@@ -113,7 +113,6 @@ const mapStateToProps = state => ({
   product: state.productlist.product
 });
 
-export default connect(
-  mapStateToProps,
-  { getProduct, addToShoppingCart }
-)(MoreInfoProduct);
+export default connect(mapStateToProps, { getProduct, addToShoppingCart })(
+  MoreInfoProduct
+);

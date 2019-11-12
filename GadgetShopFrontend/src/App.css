@@ -125,7 +125,7 @@
 }
 
 .more-info-back-to-products-btn {
-  margin-top: 155px;
+  margin-top: 110px;
 }
 .more-info-image {
   margin: 20px;
@@ -172,12 +172,13 @@
 .cart-icon-trash {
   cursor: pointer;
   color: #f00000;
-  font-size: 30px;
+  font-size: 35px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 .cart-icon-trash:hover {
   cursor: pointer;
   color: #db1414;
-  font-size: 30px;
 }
 .cart-price-checkout-container {
   margin-bottom: 30px;
@@ -221,9 +222,11 @@
 }
 .copyright {
   padding-left: 10px;
+  font-weight: 700;
 }
 .contact {
   padding-right: 10px;
+  font-weight: 700;
 }
 .margin-bottom {
   margin-bottom: 55px;
@@ -266,4 +269,119 @@
 }
 .scale-button:hover {
   transform: scale(1.1, 1.1);
+}
+.enter-page-background-color {
+  background-color: #c2c2d6;
+  box-shadow: -1px 10px 37px 45px rgba(194, 194, 214, 1);
+  border-radius: 60px;
+}
+.scale-thing {
+  overflow: hidden;
+  transform: scale(0.95);
+}
+.scale-thing {
+  transition: all 0.5s ease-in-out;
+}
+.scale-thing:hover {
+  transform: scale(1);
+}
+
+.btn-dark,
+.btn-dark:hover,
+.btn-dark:active,
+.btn-dark:visited {
+  background-color: #8064a2 !important;
+}
+.login-page-background-color {
+  background-color: #c2c2d6;
+  box-shadow: 4px 17px 11px 27px rgba(194, 194, 214, 1);
+  margin-top: 40px;
+}
+.register-page-background-color {
+  background-color: #c2c2d6;
+  box-shadow: 4px 17px 11px 27px rgba(194, 194, 214, 1);
+}
+.header-shop-name {
+  font-size: 30px;
+  font-weight: 700;
+  font-style: italic;
+}
+.header-link-deco {
+  text-decoration: none;
+  color: #000000;
+}
+.header-link-deco:hover {
+  text-decoration: none;
+  color: #000000;
+}
+.header-background {
+  background-color: #c1c1d7;
+}
+.margin-left-button {
+  margin-left: 10px;
+}
+.header-buttons {
+  margin-left: 5px;
+  font-size: 17px;
+}
+.user-name-header {
+  font-size: 20px;
+  font-weight: 700;
+  font-style: italic;
+  margin-top: 10px;
+}
+.categories-div-style {
+  border-radius: 20px;
+  box-shadow: 0px 6px 5px 11px rgba(193, 193, 215, 1);
+}
+.add-category-text-margin {
+  margin-top: 15px;
+}
+.categories-header-text {
+  font-weight: 700;
+  font-size: 25px;
+}
+.category-link-deco {
+  text-decoration: none;
+  color: #000000;
+}
+.category-link-deco:hover {
+  text-decoration: none;
+  color: #000000;
+}
+.category-text {
+  font-size: 20px;
+  font-weight: 700;
+}
+.button-category {
+  margin-left: 10px;
+}
+.margin-bottom-category {
+  margin-bottom: 10px;
+}
+.button-left-product {
+  margin-right: 10px;
+  font-size: 17px;
+}
+.button-right-product {
+  margin-bottom: 10px;
+}
+.scale-product {
+  transform: scale(0.95);
+}
+.scale-product {
+  transition: all 0.5s ease-in-out;
+}
+.scale-product:hover {
+  transform: scale(1);
+}
+.more-info-margin {
+  margin-bottom: 90px;
+}
+.scale-divs-in-cart {
+  transform: scale(0.95);
+  transition: all 0.5s ease-in-out;
+}
+.scale-divs-in-cart:hover {
+  transform: scale(1);
 }

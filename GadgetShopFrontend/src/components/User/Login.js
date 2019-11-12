@@ -44,7 +44,7 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container">
+      <div className="container login-page-background-color scale-thing">
         <form onSubmit={this.onSubmit}>
           <p className="login-register-header">Log in and do the shopping!</p>
           <hr></hr>
@@ -85,14 +85,14 @@ class Login extends Component {
           <br></br>
           <button
             type="submit"
-            className="btn btn-primary button-width scale-button"
+            className="btn btn-dark button-width scale-button"
           >
             Log in
           </button>
         </form>
         <hr></hr>
         <Link to="/register">
-          <button className=" btn btn-primary button-width scale-button">
+          <button className=" btn btn-dark button-width scale-button">
             Don't have an account? Sign up!
           </button>
         </Link>
@@ -111,7 +111,4 @@ const mapStateToProps = state => ({
   security: state.security,
   errors: state.errors
 });
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default connect(mapStateToProps, { login })(Login);

@@ -17,15 +17,54 @@ class Product extends Component {
   render() {
     const { product } = this.props;
     const { id } = this.props;
+    const { user } = this.props.security;
+    const userIsAdmin = (
+      <React.Fragment>
+        <div className=" clearfix float-right display-inline-class ">
+          <Link className=" display-block-class" to={`/addProduct/${id}`}>
+            <button className="btn btn-success scale-button button-right-product">
+              <i className="fa fa-plus-circle"></i>
+            </button>
+          </Link>
 
+          <Link
+            to={`/updateProduct/${product.categoryIdentifier}/${product.categorySequence}`}
+            className=" display-block-class"
+          >
+            <button className="btn btn-warning scale-button button-right-product">
+              <i className="fa fa-wrench"></i>
+            </button>
+          </Link>
+
+          <button
+            className="btn btn-danger display-block-class scale-button"
+            onClick={this.onDeleteClick.bind(
+              this,
+              product.categoryIdentifier,
+              product.categorySequence
+            )}
+          >
+            <i className="fa fa-trash"></i>
+          </button>
+        </div>
+      </React.Fragment>
+    );
+    let adminButtons;
+    if (user.admin) {
+      adminButtons = userIsAdmin;
+    }
     return (
-      <div className="clearfix float-left product-list-container">
+      <div className="clearfix float-left product-list-container scale-product">
         <div className="add-box-shadow clearfix px-2 my-1 add-border-radius">
           <div className=" photo-container float-left">
             <Link
               to={`/moreInfo/${product.categoryIdentifier}/${product.categorySequence}`}
             >
-              <img src={`/images/${product.productPhoto}`} alt="" />
+              <img
+                className="scale-thing"
+                src={`/images/${product.productPhoto}`}
+                alt=""
+              />
             </Link>
           </div>
           <div className="float-left">
@@ -38,9 +77,10 @@ class Product extends Component {
                 position="right center"
                 trigger={
                   <Link
-                    className=" btn btn-warning"
+                    className=" btn btn-warning scale-button"
                     to={`/moreInfo/${product.categoryIdentifier}/${product.categorySequence}`}
                   >
+                    <i className="fa fa-info-circle button-left-product"></i>
                     more Info
                   </Link>
                 }
@@ -53,41 +93,25 @@ class Product extends Component {
                 position="right center"
                 trigger={
                   <p
-                    className=" btn btn-danger "
+                    className=" btn btn-danger scale-button"
                     onClick={this.onAddToCartClick.bind(
                       this,
                       product.categorySequence
                     )}
                   >
-                    add to cart
+                    <i className="fa fa-cart-plus button-left-product"></i>add
+                    to cart
                   </p>
                 }
               />
             </div>
           </div>
           <div>
-            <p className="product-short-description">
+            <p className="product-short-description ">
               {product.productShortDescription}
             </p>
           </div>
-          <div className=" clearfix float-right display-inline-class ">
-            <Link
-              className="icon-plus-circle add-icon display-block-class"
-              to={`/addProduct/${id}`}
-            />
-            <Link
-              to={`/updateProduct/${product.categoryIdentifier}/${product.categorySequence}`}
-              className="icon-wrench update-icon display-block-class"
-            />
-            <p
-              onClick={this.onDeleteClick.bind(
-                this,
-                product.categoryIdentifier,
-                product.categorySequence
-              )}
-              className="icon-trash  trash-icon display-block-class"
-            />
-          </div>
+          {adminButtons}
         </div>
       </div>
     );
@@ -96,10 +120,14 @@ class Product extends Component {
 
 Product.propTypes = {
   deleteProduct: PropTypes.func.isRequired,
-  addToShoppingCart: PropTypes.func.isRequired
+  addToShoppingCart: PropTypes.func.isRequired,
+  security: PropTypes.object.isRequired
 };
 
-export default connect(
-  null,
-  { deleteProduct, addToShoppingCart }
-)(Product);
+const mapStateToProps = state => ({
+  security: state.security
+});
+
+export default connect(mapStateToProps, { deleteProduct, addToShoppingCart })(
+  Product
+);

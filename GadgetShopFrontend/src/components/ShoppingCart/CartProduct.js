@@ -9,7 +9,7 @@ class CartProduct extends Component {
   render() {
     const { item } = this.props;
     return (
-      <div className=" float-left cart-product-container add-box-shadow">
+      <div className=" float-left cart-product-container add-box-shadow scale-divs-in-cart">
         <img
           className="float-left cart-product-photo"
           src={`/images/${item.productPhotoInCart}`}
@@ -19,10 +19,11 @@ class CartProduct extends Component {
           <p className="cart-product-name">{item.productNameInCart}</p>
           <p className="cart-product-price">{item.productPriceInCart} Euro</p>
         </div>
-        <p
-          className="icon-trash cart-icon-trash text-right"
+
+        <i
+          className="scale-button fa fa-trash cart-icon-trash float-right"
           onClick={this.onDeleteIconClick.bind(this, item.id)}
-        ></p>
+        ></i>
       </div>
     );
   }
@@ -31,7 +32,4 @@ CartProduct.propTypes = {
   deleteProductFromCart: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { deleteProductFromCart }
-)(CartProduct);
+export default connect(null, { deleteProductFromCart })(CartProduct);

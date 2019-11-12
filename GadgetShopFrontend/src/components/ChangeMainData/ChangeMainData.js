@@ -66,70 +66,65 @@ class ChangeMainData extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="add-PBI">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h4 className="display-4 text-center">Change Main Data</h4>
-              <br></br>
-              <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.shopName
-                    })}
-                    name="shopName"
-                    placeholder="Name of the shop"
-                    value={this.state.shopName}
-                    onChange={this.onChange}
-                  />
-                  {errors.shopName && (
-                    <div className="invalid-feedback text-right">
-                      {errors.shopName}
-                    </div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.pictureOnTheDashboard
-                    })}
-                    name="pictureOnTheDashboard"
-                    placeholder="Name of the main page image with its extension f.e jpg, png. Size 1200x550px"
-                    value={this.state.pictureOnTheDashboard}
-                    onChange={this.onChange}
-                  />
-                  {errors.pictureOnTheDashboard && (
-                    <div className="invalid-feedback text-right">
-                      {errors.pictureOnTheDashboard}
-                    </div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.contactEmail
-                    })}
-                    name="contactEmail"
-                    placeholder="Contact email on the footer"
-                    value={this.state.contactEmail}
-                    onChange={this.onChange}
-                  />
-                  {errors.contactEmail && (
-                    <div className="invalid-feedback text-right">
-                      {errors.contactEmail}
-                    </div>
-                  )}
-                </div>
+      <div className="container login-page-background-color scale-thing">
+        <div className="row">
+          <div className="col-md-10 m-auto">
+            <h4 className="display-4 text-center">Change Main Data</h4>
+            <br></br>
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
                 <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
+                  type="text"
+                  className={classnames("form-control form-control-lg", {
+                    "is-invalid": errors.shopName
+                  })}
+                  name="shopName"
+                  placeholder="Name of the shop"
+                  value={this.state.shopName}
+                  onChange={this.onChange}
                 />
-              </form>
-            </div>
+                {errors.shopName && (
+                  <div className="invalid-feedback text-right">
+                    {errors.shopName}
+                  </div>
+                )}
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className={classnames("form-control form-control-lg", {
+                    "is-invalid": errors.pictureOnTheDashboard
+                  })}
+                  name="pictureOnTheDashboard"
+                  placeholder="Name of the main page image with its extension f.e jpg, png. Size 1200x550px"
+                  value={this.state.pictureOnTheDashboard}
+                  onChange={this.onChange}
+                />
+                {errors.pictureOnTheDashboard && (
+                  <div className="invalid-feedback text-right">
+                    {errors.pictureOnTheDashboard}
+                  </div>
+                )}
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className={classnames("form-control form-control-lg", {
+                    "is-invalid": errors.contactEmail
+                  })}
+                  name="contactEmail"
+                  placeholder="Contact email on the footer"
+                  value={this.state.contactEmail}
+                  onChange={this.onChange}
+                />
+                {errors.contactEmail && (
+                  <div className="invalid-feedback text-right">
+                    {errors.contactEmail}
+                  </div>
+                )}
+              </div>
+              <input type="submit" className="btn btn-dark btn-block mt-4" />
+            </form>
           </div>
         </div>
       </div>
@@ -147,7 +142,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { updateShopMainData }
-)(ChangeMainData);
+export default connect(mapStateToProps, { updateShopMainData })(ChangeMainData);

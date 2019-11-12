@@ -59,8 +59,8 @@ class UpdateCategory extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="register float-left col-md-9 d-inline-block">
-        <div className="container">
+      <div className="register float-left col-md-10 d-inline-block">
+        <div className="container login-page-background-color scale-thing">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h5 className="display-4 text-center">Edit category</h5>
@@ -110,10 +110,7 @@ class UpdateCategory extends Component {
                   )}
                 </div>
 
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
-                />
+                <input type="submit" className="btn btn-dark btn-block mt-4" />
               </form>
             </div>
           </div>
@@ -134,7 +131,6 @@ const mapStateToProps = state => ({
   category: state.category.category,
   errors: state.errors
 });
-export default connect(
-  mapStateToProps,
-  { getCategory, createCategory }
-)(UpdateCategory);
+export default connect(mapStateToProps, { getCategory, createCategory })(
+  UpdateCategory
+);
