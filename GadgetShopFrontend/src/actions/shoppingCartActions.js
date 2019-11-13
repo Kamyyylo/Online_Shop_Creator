@@ -6,7 +6,7 @@ import {
 } from "./types";
 
 export const getShoppingCart = () => async dispatch => {
-  const res = await axios.get("http://localhost:8080/shoppingCart");
+  const res = await axios.get("/shoppingCart");
   dispatch({
     type: GET_SHOPPING_CART,
     payload: res.data
