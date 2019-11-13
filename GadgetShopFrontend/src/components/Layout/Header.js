@@ -70,7 +70,7 @@ class Header extends Component {
       headerLoggedData = userIsLogged;
     }
     return (
-      <div className="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 header-background border-bottom shadow-sm">
+      <div className="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 header-background border-bottom shadow-sm">
         <h4 className="my-0 mr-md-auto header-shop-name scale-thing">
           <Link className="header-link-deco" to={`${address}`}>
             {shopMainData.shopName}

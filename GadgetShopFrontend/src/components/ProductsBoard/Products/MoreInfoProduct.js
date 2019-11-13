@@ -54,7 +54,7 @@ class MoreInfoProduct extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div className="col-md-8 d-inline-block add-box-shadow more-info-margin">
+      <div className="col-md-8 d-inline-block add-box-shadow more-info-props">
         <img
           className="d-block float-left more-info-image"
           src={`/images/${this.state.productPhoto}`}
@@ -64,7 +64,7 @@ class MoreInfoProduct extends Component {
           <p className="more-info-product-name">{this.state.productName}</p>
 
           <p className="more-info-product-price ">
-            {this.state.productPrice} Euro
+            {this.state.productPrice} <i className="fa fa-euro"></i>
           </p>
           <div className="text-left ">
             <Popup
@@ -80,16 +80,18 @@ class MoreInfoProduct extends Component {
                   )}
                 >
                   add to cart
+                  <i className="fa fa-shopping-cart header-buttons"></i>
                 </p>
               }
             />
           </div>
-          <p className="text-left float-left more-info-back-to-products-btn ">
+          <p className="text-left float-left  ">
             <Link
               className=" btn btn-info scale-button "
               to={`/productsBoard/${product.categoryIdentifier}`}
             >
-              back to products
+              <i className="fa fa-arrow-left button-left-product"></i>back to
+              products
             </Link>
           </p>
         </div>

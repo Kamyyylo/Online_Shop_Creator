@@ -42,9 +42,16 @@ class CategoryItem extends Component {
         </Link>
       </React.Fragment>
     );
+    const userIsNotAdmin = (
+      <React.Fragment>
+        <i className="fa fa-arrow-circle-right category-arrow-icon"></i>
+      </React.Fragment>
+    );
     let adminButtons;
     if (user.admin) {
       adminButtons = userIsAdmin;
+    } else {
+      adminButtons = userIsNotAdmin;
     }
     return (
       <div className="clearfix scale-button margin-bottom-category">
@@ -56,7 +63,7 @@ class CategoryItem extends Component {
           to={`/productsBoard/${category.categoryIdentifier}`}
           className="nav-link active float-left category-link-deco category-text"
         >
-          <i className="button-left-product fa fa-toggle-right"></i>
+          <i className="button-left-product fa fa-toggle-right category-icon "></i>
           {category.categoryName}
         </Link>
         {adminButtons}

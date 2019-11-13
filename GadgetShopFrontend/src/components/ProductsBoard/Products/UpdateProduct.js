@@ -22,6 +22,10 @@ class UpdateProduct extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
+    if (!this.props.security.user.admin) {
+      this.props.history.push("/dashboard");
+    }
+
     const { productlist_id, pl_id } = this.props.match.params;
     this.props.getProduct(productlist_id, pl_id, this.props.history);
   }
@@ -189,12 +193,14 @@ UpdateProduct.propTypes = {
   getProduct: PropTypes.func.isRequired,
   updateProduct: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   product: state.productlist.product,
-  errors: state.errors
+  errors: state.errors,
+  security: state.security
 });
 
 export default connect(mapStateToProps, { getProduct, updateProduct })(

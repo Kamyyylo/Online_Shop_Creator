@@ -40,6 +40,11 @@ class AddProduct extends Component {
       this.props.history
     );
   }
+  componentDidMount() {
+    if (!this.props.security.user.admin) {
+      this.props.history.push("/dashboard");
+    }
+  }
   //if component receive props
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -160,11 +165,13 @@ class AddProduct extends Component {
 AddProduct.propTypes = {
   addProduct: PropTypes.func.isRequired,
   //to have acces to the errors
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  errors: state.errors
+  errors: state.errors,
+  security: state.security
 });
 
 export default connect(mapStateToProps, { addProduct })(AddProduct);

@@ -24,7 +24,11 @@ class AddCategory extends Component {
       this.setState({ errors: nextProps.errors });
     }
   }
-
+  componentDidMount() {
+    if (!this.props.security.user.admin) {
+      this.props.history.push("/dashboard");
+    }
+  }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -113,7 +117,12 @@ class AddCategory extends Component {
 
 AddCategory.propTypes = {
   createCategory: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
 };
 
-export default connect(null, { createCategory })(AddCategory);
+const mapStateToProps = state => ({
+  security: state.security
+});
+
+export default connect(mapStateToProps, { createCategory })(AddCategory);

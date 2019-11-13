@@ -17,7 +17,9 @@ class CartProduct extends Component {
         ></img>
         <div className="cart-product-credentials-container float-left">
           <p className="cart-product-name">{item.productNameInCart}</p>
-          <p className="cart-product-price">{item.productPriceInCart} Euro</p>
+          <p className="cart-product-price">
+            {item.productPriceInCart} <i className="fa fa-euro"></i>
+          </p>
         </div>
 
         <i

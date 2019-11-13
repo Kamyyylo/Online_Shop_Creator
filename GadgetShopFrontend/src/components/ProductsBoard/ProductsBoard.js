@@ -30,6 +30,19 @@ class ProductsBoard extends Component {
     const productItem = products.map(product => (
       <Product key={product.id} product={product} id={id} />
     ));
+
+    const { user } = this.props.security;
+    const userIsAdmin = (
+      <React.Fragment>
+        <Link className="btn btn-success scale-button" to={`/addProduct/${id}`}>
+          Add new product
+        </Link>
+      </React.Fragment>
+    );
+    let adminButtons;
+    if (user.admin) {
+      adminButtons = userIsAdmin;
+    }
     const boardAlgorithm = (errors, productItem) => {
       if (productItem < 1) {
         if (errors.categoryNotFound) {
@@ -42,9 +55,7 @@ class ProductsBoard extends Component {
           return (
             <div className="alert alert-info text-center" role="alert">
               <p>No Products on this board</p>
-              <Link className="btn btn-success" to={`/addProduct/${id}`}>
-                Add new product
-              </Link>
+              {adminButtons}
             </div>
           );
         }
@@ -54,7 +65,7 @@ class ProductsBoard extends Component {
     };
     BoardContent = boardAlgorithm(errors, productItem);
     return (
-      <div className="col-md-9 register float-left d-inline-block margin-bottom">
+      <div className="col-md-9 register float-left d-inline-block margin-bottom-product-list">
         <div>{BoardContent}</div>
       </div>
     );
@@ -64,15 +75,14 @@ class ProductsBoard extends Component {
 ProductsBoard.propTypes = {
   productList: PropTypes.object.isRequired,
   getProductList: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   productList: state.productlist,
-  errors: state.errors
+  errors: state.errors,
+  security: state.security
 });
 
-export default connect(
-  mapStateToProps,
-  { getProductList }
-)(ProductsBoard);
+export default connect(mapStateToProps, { getProductList })(ProductsBoard);

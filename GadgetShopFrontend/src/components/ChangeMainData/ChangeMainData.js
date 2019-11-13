@@ -21,6 +21,10 @@ class ChangeMainData extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.security.user.admin) {
+      this.props.history.push("/dashboard");
+    }
+
     const {
       id,
       shopName,
@@ -134,12 +138,14 @@ class ChangeMainData extends Component {
 
 ChangeMainData.propTypes = {
   updateShopMainData: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   shopMainData: state.shopMainData.shopMainData,
-  errors: state.errors
+  errors: state.errors,
+  security: state.security
 });
 
 export default connect(mapStateToProps, { updateShopMainData })(ChangeMainData);

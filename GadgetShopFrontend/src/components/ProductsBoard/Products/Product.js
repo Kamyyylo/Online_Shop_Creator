@@ -54,8 +54,8 @@ class Product extends Component {
       adminButtons = userIsAdmin;
     }
     return (
-      <div className="clearfix float-left product-list-container scale-product">
-        <div className="add-box-shadow clearfix px-2 my-1 add-border-radius">
+      <div className="clearfix float-left product-list-container scale-product add-border-radius">
+        <div className="add-box-shadow clearfix px-2 my-1 ">
           <div className=" photo-container float-left">
             <Link
               to={`/moreInfo/${product.categoryIdentifier}/${product.categorySequence}`}
@@ -69,7 +69,9 @@ class Product extends Component {
           </div>
           <div className="float-left">
             <p className="product-name">{product.productName}</p>
-            <p className="product-price">{product.productPrice} Euro</p>
+            <p className="product-price">
+              {product.productPrice} <i className="fa fa-euro"></i>
+            </p>
             <p className="more-info">
               <Popup
                 content="Click to get more info about this product"

@@ -5,7 +5,7 @@ class InfoImage extends Component {
   render() {
     const { shopMainData } = this.props.shopMainData;
     return (
-      <div>
+      <div className="info-image">
         <img src={`/images/${shopMainData.pictureOnTheDashboard}`} alt="" />
       </div>
     );
@@ -15,7 +15,4 @@ const mapStateToProps = state => ({
   shopMainData: state.shopMainData
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(InfoImage);
+export default connect(mapStateToProps, null)(InfoImage);

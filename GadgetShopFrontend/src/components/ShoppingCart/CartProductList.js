@@ -8,12 +8,14 @@ class CartProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shipping: 0
+      shipping: 0,
+      isDisabled: true
     };
   }
   onShippingButtonClick(value) {
     this.setState({
-      shipping: value
+      shipping: value,
+      isDisabled: false
     });
   }
   componentDidMount() {
@@ -28,6 +30,30 @@ class CartProductList extends Component {
     ));
     function handleToken(token, addresses) {
       console.log({ token, addresses });
+    }
+    const checkoutEnabled = (
+      <React.Fragment>
+        <StripeCheckout
+          className="scale-button"
+          currency="EUR"
+          stripeKey="pk_test_L62B8bk6mZ53yvnBXxzvCZ6i00rZlLuij6"
+          token={handleToken}
+          billingAddress
+          shippingAddress
+          amount={(costOfProducts + this.state.shipping) * 100}
+        />
+      </React.Fragment>
+    );
+    const checkoutDisabled = (
+      <React.Fragment>
+        <StripeCheckout disabled />
+      </React.Fragment>
+    );
+    let isCheckoutButtonWorking;
+    if (this.state.isDisabled) {
+      isCheckoutButtonWorking = checkoutDisabled;
+    } else {
+      isCheckoutButtonWorking = checkoutEnabled;
     }
     shoppingCart.map(item => (costOfProducts += item.productPriceInCart));
     const renderProducts = () => {
@@ -67,15 +93,7 @@ class CartProductList extends Component {
 
                 <hr></hr>
 
-                <StripeCheckout
-                  className="scale-button"
-                  currency="EUR"
-                  stripeKey="pk_test_L62B8bk6mZ53yvnBXxzvCZ6i00rZlLuij6"
-                  token={handleToken}
-                  billingAddress
-                  shippingAddress
-                  amount={(costOfProducts + this.state.shipping) * 100}
-                />
+                {isCheckoutButtonWorking}
               </div>
 
               <div className="btn-group-vertical btn-group-toggle cart-shipping-options scale-divs-in-cart">
@@ -133,7 +151,7 @@ class CartProductList extends Component {
       }
     };
     let CartItems = renderProducts();
-    return <div className="margin-bottom">{CartItems}</div>;
+    return <div className="margins-shopping-list">{CartItems}</div>;
   }
 }
 
