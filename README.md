@@ -5,7 +5,6 @@
 **Backend:** Java, Spring, Spring JPA<br />
 **Database:** SQL<br />
 **Communication:** Rest API<br />
-**Design Pattern:** MVC<br />
 **Deployed:** https://online-shop-builder.herokuapp.com/ <br />
 
 This website is an online shop that can be customized by its owner. User with "normal" role can view and buy products.<br />
